@@ -1,0 +1,24 @@
+{
+    "VCENTER_SERVER": "",
+    "VCENTER_USERNAME": "",
+    "VCENTER_PASSWORD": "",
+
+    "datacenter": "",
+    "cluster": "",
+    "datastore": "",
+
+    "vm_name": "",
+    "guest_os_type": "rhel7_64Guest",
+    "convert_to_template": "true",
+
+    "CPUs": "1",
+    "RAM": "2048",
+    "disk_size": "30720",
+
+    "SSH_USERNAME": "root",
+    "SSH_PASSWORD": "routine",
+
+    "iso_paths": "[Datastore] ISO/PATH/rhel7.iso",
+    "floppy_files": "{{template_dir}}/ks.cfg",
+    "boot_command": " <esc> <wait> linux inst.text inst.ks=hd:fd0:/ks.cfg <enter> "
+}
