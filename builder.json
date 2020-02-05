@@ -1,0 +1,55 @@
+{
+"builders": [
+    {
+      "type": "vsphere-iso",
+
+      "vcenter_server":      "{{user `VCENTER_SERVER`}}",
+      "username":            "{{user `VCENTER_USERNAME`}}",
+      "password":            "{{user `VCENTER_PASSWORD`}}",
+      "insecure_connection": "true",
+      "datacenter": "{{user `datacenter`}}",
+
+      "cluster": "{{user `cluster`}}",
+      "host": "{{user `host`}}",
+      "datastore": "{{user `datastore`}}",
+      "network": "",
+      "network_card": "vmxnet3",
+
+      "notes": "Build via Packer",
+      "vm_name": "{{user `vm_name`}}",
+      "guest_os_type": "{{user `guest_os_type`}}",
+
+
+      "CPUs": "{{user `CPUs`}}",
+      "CPU_hot_plug": true,
+      "RAM": "{{user `RAM`}}",
+      "RAM_reserve_all": false,
+      "RAM_hot_plug": true,
+      "usb_controller" : false,
+
+      "disk_controller_type":  "pvscsi",
+      "disk_size":        "{{user `disk_size`}}",      
+      "disk_thin_provisioned": true,
+
+
+      "ssh_username": "{{user `SSH_USERNAME`}}",
+      "ssh_password": "{{user `SSH_PASSWORD`}}",
+
+      "iso_paths": [ "{{user `iso_paths`}}" ],
+      "floppy_files": [ "{{user `floppy_files`}}" ],
+      "boot_command": "{{user `boot_command`}}",
+
+      "convert_to_template": "{{user `convert_to_template`}}"
+    }
+ ],
+
+"provisioners":[
+    {
+      "type": "shell",
+      "execute_command": "sudo {{.Vars}} sh {{.Path}}",
+      "scripts": [
+        "scripts/cleanup.sh"
+      ]
+    }
+  ]
+}
